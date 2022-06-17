@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Header from '../../components/Header';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link } from 'react-router-dom';
-import ExchangeComponent from '../../components/Exchange';
+import ExchangeCard from '../../components/Exchange';
+import { primary } from '../../config/palette';
 
 export interface IData {
   id: string;
@@ -59,12 +60,7 @@ const Landing = () => {
     console.log('in refresh');
     setPagination((prev) => ({ ...prev, page: 1, hasMore: true }));
     setData([]);
-    localStorage.removeItem('exchange-list@exchange-list-sample');
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem('exchange-list@exchange-list-sample', JSON.stringify(data));
-  }, [data]);
 
   useEffect(() => {
     if (data.length === 0) loadExchangeData();
@@ -78,29 +74,31 @@ const Landing = () => {
           dataLength={data.length || 10} //This is important field to render the next data
           next={loadExchangeData}
           hasMore={pagination.hasMore}
-          loader={<h4>Loading...</h4>}
+          loader={<h4 style={{ textAlign: 'center', color: `${primary.color}` }}>Loading...</h4>}
           endMessage={
             <p style={{ textAlign: 'center' }}>
-              <b>The end</b>
+              <b style={{ textAlign: 'center', color: `${primary.color}` }}>The end</b>
             </p>
           }
-          // below props only if you need pull down functionality
           refreshFunction={refresh}
           pullDownToRefresh
           pullDownToRefreshThreshold={50}
-          pullDownToRefreshContent={<h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>}
-          releaseToRefreshContent={<h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>}
+          pullDownToRefreshContent={
+            <h3 style={{ textAlign: 'center', color: `${primary.color}` }}>Pull down to refresh</h3>
+          }
+          releaseToRefreshContent={
+            <h3 style={{ textAlign: 'center', color: `${primary.color}` }}>Release to refresh</h3>
+          }
         >
           {data.map((exchange) => {
             return (
               <div style={{ boxSizing: 'border-box', padding: '4px 4px' }}>
                 <Link
-                  style={{ textDecoration: 'none', color: '#bbbec7' }}
+                  style={{ textDecoration: 'none', color: `${primary.gray}`, fontWeight: 'bold' }}
                   to={`exchange?id=${exchange.id}`}
                   target="_blank"
                 >
-                  <ExchangeComponent type="list" exInfo={exchange} />
-                  {/* {exchange.name} */}
+                  <ExchangeCard type="list" exInfo={exchange} />
                 </Link>
               </div>
             );
@@ -126,6 +124,7 @@ const Content = styled.div`
   width: 988px;
   max-width: 90%;
   min-height: 100vh;
+  margin-top: 64px;
   /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
