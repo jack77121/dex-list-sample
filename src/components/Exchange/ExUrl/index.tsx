@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { primary } from '../../../config/palette';
-import { Link } from 'react-router-dom';
 
 const ExUrl = ({ type = 'list', exUrl = '' }) => {
   return (
@@ -8,9 +7,14 @@ const ExUrl = ({ type = 'list', exUrl = '' }) => {
       <Title>Site</Title>
       <Gap type={type} />
       <Info>
-        <Link style={{ textDecoration: 'none', color: '#bbbec7' }} to={exUrl} target="_blank">
+        <a
+          style={{ textDecoration: 'none', color: `${primary.gray}`, fontWeight: 'bold' }}
+          href={exUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
           {exUrl}
-        </Link>
+        </a>
       </Info>
     </Layout>
   );
