@@ -1,27 +1,27 @@
 import styled from 'styled-components';
 import { primary } from '../../../config/palette';
 
-const Country = ({ type = 'list', countryName = '' }) => {
+const Description = ({ type = 'list', descValue = '' }) => {
   return (
     <Layout type={type}>
-      <Title>Ctry</Title>
-      <Gap type={type} />
+      <Title>Description</Title>
       <Info>
-        <CtryName style={{ marginLeft: 6 }}>{countryName}</CtryName>
+        <DescValue style={{ marginLeft: 6 }}>{descValue || '(no description)'}</DescValue>
       </Info>
     </Layout>
   );
 };
 
-export default Country;
+export default Description;
 
-interface ICountry {
+interface IDescription {
   type: string;
 }
 
-const Layout = styled.div<ICountry>`
+const Layout = styled.div<IDescription>`
   width: ${(props) => (props.type === 'list' ? '220px' : '100%')};
   display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   margin: ${(props) => (props.type === 'list' ? '0px 8px' : '0px')};
 `;
@@ -31,20 +31,12 @@ const Title = styled.div`
   font-size: 18px;
 `;
 
-const Gap = styled.div<ICountry>`
-  width: 16px;
-  flex-grow: 1;
-`;
-
 const Info = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const CtryName = styled.div`
-  /* width: 100px; */
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+const DescValue = styled.div`
+  max-width: 100%;
 `;

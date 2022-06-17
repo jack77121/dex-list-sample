@@ -1,25 +1,25 @@
 import styled from 'styled-components';
 import { primary } from '../../../config/palette';
 
-const Country = ({ type = 'list', countryName = '' }) => {
+const EstablishedYear = ({ type = 'list', year = 0 }) => {
   return (
     <Layout type={type}>
-      <Title>Ctry</Title>
+      <Title>Established Year</Title>
       <Gap type={type} />
       <Info>
-        <CtryName style={{ marginLeft: 6 }}>{countryName}</CtryName>
+        <YearValue style={{ marginLeft: 6 }}>{year}</YearValue>
       </Info>
     </Layout>
   );
 };
 
-export default Country;
+export default EstablishedYear;
 
-interface ICountry {
+interface IEstablishedYear {
   type: string;
 }
 
-const Layout = styled.div<ICountry>`
+const Layout = styled.div<IEstablishedYear>`
   width: ${(props) => (props.type === 'list' ? '220px' : '100%')};
   display: flex;
   box-sizing: border-box;
@@ -31,7 +31,7 @@ const Title = styled.div`
   font-size: 18px;
 `;
 
-const Gap = styled.div<ICountry>`
+const Gap = styled.div<IEstablishedYear>`
   width: 16px;
   flex-grow: 1;
 `;
@@ -42,8 +42,8 @@ const Info = styled.div`
   align-items: center;
 `;
 
-const CtryName = styled.div`
-  /* width: 100px; */
+const YearValue = styled.div`
+  max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

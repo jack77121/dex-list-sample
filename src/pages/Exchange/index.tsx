@@ -1,33 +1,65 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Header from '../../components/Header';
-import { useSearchParams } from 'react-router-dom';
-import { IData } from '../Landing';
+import { useParams } from 'react-router-dom';
+import ExchangeCard from '../../components/Exchange';
+
+export interface IExchangeInfo {
+  name: string;
+  year_established: number;
+  country: string;
+  description: string;
+  url: string;
+  image: string;
+  facebook_url: string;
+  reddit_url: string;
+  telegram_url: string;
+  slack_url: string;
+  other_url_1: string;
+  other_url_2: string;
+  twitter_handle: string;
+  has_trading_incentive: boolean;
+  centralized: boolean;
+  public_notice: string;
+  alert_notice: string;
+  trust_score: number;
+  trust_score_rank: number;
+  trade_volume_24h_btc: number;
+  trade_volume_24h_btc_normalized: number;
+  tickers: any[];
+}
 
 const Exchange = () => {
-  const [urlQuery] = useSearchParams();
+  const { exchangeId } = useParams();
+  const [exchangeInfo, setExchangeInfo] = useState<IExchangeInfo>();
 
   useEffect(() => {
-    const exChangeId = urlQuery.get('id');
-    console.log('query exchange id: ', exChangeId);
-    const tmpData = localStorage.getItem('exchange-list@exchange-list-sample');
-    if (tmpData) {
-      const storageExchange: IData[] = JSON.parse(tmpData);
-      const targetExchange = storageExchange.find((exchange) => exchange.id === exChangeId);
-      if (targetExchange) {
-        console.log('target exchange: ', targetExchange);
-      } else {
-        console.log('target exchange is not exist');
-      }
+    if (exchangeId) {
+      fetch(
+        (process.env.REACT_APP_COINGECKO_EXCHANGE_API_URL || 'https://api.coingecko.com/api/v3/exchanges') +
+          `/${exchangeId}`,
+        { method: 'GET' }
+      )
+        .then((res) => res.json())
+        .then((newData) => {
+          setExchangeInfo(newData);
+        })
+        .catch((e) => {
+          console.warn('have some error in loadExchangeData: ', e);
+        });
     } else {
-      console.log('local storage is empty');
+      console.log('exchangeId is undefined');
     }
-  }, [urlQuery]);
+  }, [exchangeId]);
 
   return (
     <Layout>
       <Header />
-      Exchange
+      {exchangeId && exchangeInfo ? (
+        <ExchangeCard type="card" exInfo={exchangeInfo} />
+      ) : (
+        <div>Your request exchange is not exist.</div>
+      )}
     </Layout>
   );
 };

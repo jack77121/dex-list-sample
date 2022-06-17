@@ -3,7 +3,7 @@ import { primary } from '../../../config/palette';
 
 const TrustRank = ({ type = 'list', rank = 0 }) => {
   return (
-    <Layout>
+    <Layout type={type}>
       <Title>Trust rank</Title>
       <Gap type={type} />
       <Info>
@@ -15,15 +15,15 @@ const TrustRank = ({ type = 'list', rank = 0 }) => {
 
 export default TrustRank;
 
-interface IName {
+interface ITrustRank {
   type: string;
 }
 
-const Layout = styled.div`
-  width: 220px;
+const Layout = styled.div<ITrustRank>`
+  width: ${(props) => (props.type === 'list' ? '220px' : '100%')};
   display: flex;
   box-sizing: border-box;
-  margin: 0px 8px;
+  margin: ${(props) => (props.type === 'list' ? '0px 8px' : '0px')};
 `;
 
 const Title = styled.div`
@@ -31,9 +31,9 @@ const Title = styled.div`
   font-size: 18px;
 `;
 
-const Gap = styled.div<IName>`
+const Gap = styled.div<ITrustRank>`
   width: 16px;
-  flex-grow: ${(props) => (props.type === 'list' ? 1 : 0)};
+  flex-grow: 1;
 `;
 
 const Info = styled.div`

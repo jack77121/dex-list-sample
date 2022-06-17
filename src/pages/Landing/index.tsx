@@ -95,7 +95,7 @@ const Landing = () => {
               <div style={{ boxSizing: 'border-box', padding: '4px 4px' }}>
                 <Link
                   style={{ textDecoration: 'none', color: `${primary.gray}`, fontWeight: 'bold' }}
-                  to={`exchange?id=${exchange.id}`}
+                  to={`/exchange/${exchange.id}`}
                   target="_blank"
                 >
                   <ExchangeCard type="list" exInfo={exchange} />

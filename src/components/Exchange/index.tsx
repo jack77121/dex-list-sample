@@ -1,16 +1,36 @@
+import { useMemo } from 'react';
 import styled from 'styled-components';
 import Name from './Name';
 import Country from './Country';
 import ExUrl from './ExUrl';
 import TrustRank from './TrustRank';
+import EstablishedYear from './Established';
+import Social from './Social';
+import Description from './Description';
+import Button from '../Button';
 import { IData } from '../../pages/Landing';
+import { IExchangeInfo } from '../../pages/Exchange';
+import { Link } from 'react-router-dom';
 
 interface IExchangeComponent {
   type: string;
-  exInfo: IData;
+  exInfo: IData | IExchangeInfo;
 }
 
 const ExchangeCard: React.FC<IExchangeComponent> = ({ type = 'list', exInfo }) => {
+  const detailSocialInfo = useMemo(() => {
+    if (type !== 'list') {
+      console.log('in detailSocialInfo');
+      return [
+        { facebook_url: (exInfo as IExchangeInfo).facebook_url },
+        { reddit_url: (exInfo as IExchangeInfo).reddit_url },
+        { slack_url: (exInfo as IExchangeInfo).slack_url },
+        { telegram_url: (exInfo as IExchangeInfo).telegram_url },
+      ];
+    }
+    return [];
+  }, [exInfo, type]);
+
   if (type === 'list') {
     return (
       <ListLayout>
@@ -27,6 +47,13 @@ const ExchangeCard: React.FC<IExchangeComponent> = ({ type = 'list', exInfo }) =
         <Country type={type} countryName={exInfo.country} />
         <ExUrl type={type} exUrl={exInfo.url} />
         <TrustRank type={type} rank={exInfo.trust_score_rank} />
+        <EstablishedYear type={type} year={exInfo.year_established} />
+        <Social type={type} socialUrl={detailSocialInfo} />
+        <Description type={type} descValue={exInfo.description} />
+        <div style={{ height: 32 }} />
+        <Link to={'/'}>
+          <Button title="test" />
+        </Link>
       </CardLayout>
     );
   }
@@ -48,8 +75,9 @@ const ListLayout = styled.div`
 `;
 
 const CardLayout = styled.div`
-  width: 768px;
+  width: 568px;
   max-width: 90%;
   display: flex;
   flex-direction: column;
+  margin-top: 48px;
 `;

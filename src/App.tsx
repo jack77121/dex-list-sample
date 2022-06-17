@@ -7,7 +7,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="exchange" element={<Exchange />} />
+        <Route path="exchange/:exchangeId" element={<Exchange />} />
       </Routes>
     </BrowserRouter>
   );

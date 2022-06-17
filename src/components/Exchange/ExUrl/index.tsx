@@ -3,10 +3,10 @@ import { primary } from '../../../config/palette';
 
 const ExUrl = ({ type = 'list', exUrl = '' }) => {
   return (
-    <Layout>
+    <Layout type={type}>
       <Title>Site</Title>
       <Gap type={type} />
-      <Info>
+      <Info type={type}>
         <a
           style={{ textDecoration: 'none', color: `${primary.gray}`, fontWeight: 'bold' }}
           href={exUrl}
@@ -22,14 +22,14 @@ const ExUrl = ({ type = 'list', exUrl = '' }) => {
 
 export default ExUrl;
 
-interface IName {
+interface IExUrl {
   type: string;
 }
-const Layout = styled.div`
-  width: 220px;
+const Layout = styled.div<IExUrl>`
+  width: ${(props) => (props.type === 'list' ? '220px' : '100%')};
   display: flex;
   box-sizing: border-box;
-  margin: 0px 8px;
+  margin: ${(props) => (props.type === 'list' ? '0px 8px' : '0px')};
 `;
 
 const Title = styled.div`
@@ -37,20 +37,21 @@ const Title = styled.div`
   font-size: 18px;
 `;
 
-const Gap = styled.div<IName>`
+const Gap = styled.div<IExUrl>`
   width: 16px;
-  flex-grow: ${(props) => (props.type === 'list' ? 1 : 0)};
+  flex-grow: 1;
 `;
 
-const Info = styled.div`
+const Info = styled.div<IExUrl>`
   display: inline-block;
   position: relative;
   line-height: 32px;
   /* top: 10%; */
   /* justify-content: flex-end; */
   /* align-items: center; */
-  /* margin: auto 0; */
-  width: 150px;
+  /* margin: auto 0; */.3
+  width: ${(props) => (props.type === 'list' ? '150px' : '100%')};
+  width: ;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
