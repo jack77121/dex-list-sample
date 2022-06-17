@@ -13,10 +13,11 @@ copy `.env.template` to `.env.test` and make your own change
 ### For production env.
 copy `.env.template` to `.env.production` and make your own change
 
-## Test
-`$ npm run test`
 ## Run
 `$ npm run start`
+## Test
+(make sure your server is running)
+`$ npm run test`
 
 ## Build
 `$ npm run build`
