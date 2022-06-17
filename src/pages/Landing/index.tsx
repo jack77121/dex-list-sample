@@ -30,8 +30,6 @@ const Landing = () => {
   const [data, setData] = useState<IData[]>([]);
 
   const loadExchangeData = useCallback(() => {
-    // if (pagination.page > 1) {
-    console.log('page: ', pagination.page);
     fetch(
       process.env.REACT_APP_COINGECKO_EXCHANGE_API_URL +
         `?per_page=${pagination.perPage}&page=${pagination.page}` ||
@@ -40,7 +38,6 @@ const Landing = () => {
     )
       .then((res) => res.json())
       .then((newData) => {
-        console.log('in load more data: ', newData);
         setPagination((prev) => ({
           ...prev,
           page: (prev.page += 1),
@@ -57,7 +54,6 @@ const Landing = () => {
   }, [pagination]);
 
   const refresh = useCallback(() => {
-    console.log('in refresh');
     setPagination((prev) => ({ ...prev, page: 1, hasMore: true }));
     setData([]);
   }, []);
@@ -71,7 +67,7 @@ const Landing = () => {
       <Header />
       <Content>
         <InfiniteScroll
-          dataLength={data.length || 10} //This is important field to render the next data
+          dataLength={data.length}
           next={loadExchangeData}
           hasMore={pagination.hasMore}
           loader={<h4 style={{ textAlign: 'center', color: `${primary.color}` }}>Loading...</h4>}
@@ -125,8 +121,4 @@ const Content = styled.div`
   max-width: 90%;
   min-height: 100vh;
   margin-top: 64px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center; */
 `;

@@ -13,14 +13,13 @@ import { IExchangeInfo } from '../../pages/Exchange';
 import { Link } from 'react-router-dom';
 
 interface IExchangeComponent {
-  type: string;
+  type: string; // list || card
   exInfo: IData | IExchangeInfo;
 }
 
 const ExchangeCard: React.FC<IExchangeComponent> = ({ type = 'list', exInfo }) => {
   const detailSocialInfo = useMemo(() => {
     if (type !== 'list') {
-      console.log('in detailSocialInfo');
       return [
         { facebook_url: (exInfo as IExchangeInfo).facebook_url },
         { reddit_url: (exInfo as IExchangeInfo).reddit_url },

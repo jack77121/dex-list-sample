@@ -46,10 +46,6 @@ const Info = styled.div<IExUrl>`
   display: inline-block;
   position: relative;
   line-height: 32px;
-  /* top: 10%; */
-  /* justify-content: flex-end; */
-  /* align-items: center; */
-  /* margin: auto 0; */.3
   width: ${(props) => (props.type === 'list' ? '150px' : '100%')};
   width: ;
   overflow: hidden;
