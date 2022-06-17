@@ -51,7 +51,7 @@ const ExchangeCard: React.FC<IExchangeComponent> = ({ type = 'list', exInfo }) =
         <Description type={type} descValue={exInfo.description} />
         <div style={{ height: 32 }} />
         <Link to={'/'}>
-          <Button title="test" />
+          <Button title="Home" />
         </Link>
       </CardLayout>
     );
