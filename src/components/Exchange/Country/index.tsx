@@ -20,7 +20,9 @@ interface ICountry {
 }
 
 const Layout = styled.div<ICountry>`
-  width: ${(props) => (props.type === 'list' ? '220px' : '100%')};
+  width: ${(props) => (props.type === 'list' ? 'auto' : '100%')};
+  min-width: 220px;
+  flex: 1;
   display: flex;
   box-sizing: border-box;
   align-items: center;

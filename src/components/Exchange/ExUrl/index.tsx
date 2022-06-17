@@ -26,7 +26,9 @@ interface IExUrl {
   type: string;
 }
 const Layout = styled.div<IExUrl>`
-  width: ${(props) => (props.type === 'list' ? '220px' : '100%')};
+  width: ${(props) => (props.type === 'list' ? 'auto' : '100%')};
+  min-width: 220px;
+  flex: 1;
   display: flex;
   align-items: center;
   box-sizing: border-box;

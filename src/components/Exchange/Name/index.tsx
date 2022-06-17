@@ -22,7 +22,9 @@ interface IName {
 }
 
 const Layout = styled.div<IName>`
-  width: ${(props) => (props.type === 'list' ? '220px' : '100%')};
+  width: ${(props) => (props.type === 'list' ? 'auto' : '100%')};
+  flex: 1;
+  min-width: 220px;
   display: flex;
   box-sizing: border-box;
   margin: ${(props) => (props.type === 'list' ? '0px 8px' : '8px 0px')};
