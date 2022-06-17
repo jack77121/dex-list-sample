@@ -23,7 +23,7 @@ const Layout = styled.div<IDescription>`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  margin: ${(props) => (props.type === 'list' ? '0px 8px' : '0px')};
+  margin: ${(props) => (props.type === 'list' ? '0px 8px' : '8px 0px')};
 `;
 
 const Title = styled.div`
@@ -39,4 +39,5 @@ const Info = styled.div`
 
 const DescValue = styled.div`
   max-width: 100%;
+  margin-top: 16px;
 `;

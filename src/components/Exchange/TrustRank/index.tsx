@@ -22,8 +22,9 @@ interface ITrustRank {
 const Layout = styled.div<ITrustRank>`
   width: ${(props) => (props.type === 'list' ? '220px' : '100%')};
   display: flex;
+  align-items: center;
   box-sizing: border-box;
-  margin: ${(props) => (props.type === 'list' ? '0px 8px' : '0px')};
+  margin: ${(props) => (props.type === 'list' ? '0px 8px' : '8px 0px')};
 `;
 
 const Title = styled.div`

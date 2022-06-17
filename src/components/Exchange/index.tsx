@@ -78,5 +78,5 @@ const CardLayout = styled.div`
   max-width: 90%;
   display: flex;
   flex-direction: column;
-  margin-top: 48px;
+  margin-top: 24px;
 `;

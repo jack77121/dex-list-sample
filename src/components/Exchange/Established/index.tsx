@@ -23,7 +23,8 @@ const Layout = styled.div<IEstablishedYear>`
   width: ${(props) => (props.type === 'list' ? '220px' : '100%')};
   display: flex;
   box-sizing: border-box;
-  margin: ${(props) => (props.type === 'list' ? '0px 8px' : '0px')};
+  align-items: center;
+  margin: ${(props) => (props.type === 'list' ? '0px 8px' : '8px 0px')};
 `;
 
 const Title = styled.div`

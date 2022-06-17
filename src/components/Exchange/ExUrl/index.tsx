@@ -28,8 +28,9 @@ interface IExUrl {
 const Layout = styled.div<IExUrl>`
   width: ${(props) => (props.type === 'list' ? '220px' : '100%')};
   display: flex;
+  align-items: center;
   box-sizing: border-box;
-  margin: ${(props) => (props.type === 'list' ? '0px 8px' : '0px')};
+  margin: ${(props) => (props.type === 'list' ? '0px 8px' : '8px 0px')};
 `;
 
 const Title = styled.div`
@@ -47,7 +48,7 @@ const Info = styled.div<IExUrl>`
   position: relative;
   line-height: 32px;
   width: ${(props) => (props.type === 'list' ? '150px' : '100%')};
-  width: ;
+  text-align: right;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
