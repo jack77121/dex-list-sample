@@ -10,7 +10,7 @@ interface IExchangeComponent {
   exInfo: IData;
 }
 
-const ExchangeComponent: React.FC<IExchangeComponent> = ({ type = 'list', exInfo }) => {
+const ExchangeCard: React.FC<IExchangeComponent> = ({ type = 'list', exInfo }) => {
   if (type === 'list') {
     return (
       <ListLayout>
@@ -21,11 +21,18 @@ const ExchangeComponent: React.FC<IExchangeComponent> = ({ type = 'list', exInfo
       </ListLayout>
     );
   } else {
-    return <CardLayout>123</CardLayout>;
+    return (
+      <CardLayout>
+        <Name type={type} name={exInfo.name} imgUrl={exInfo.image} />
+        <Country type={type} countryName={exInfo.country} />
+        <ExUrl type={type} exUrl={exInfo.url} />
+        <TrustRank type={type} rank={exInfo.trust_score_rank} />
+      </CardLayout>
+    );
   }
 };
 
-export default ExchangeComponent;
+export default ExchangeCard;
 
 const ListLayout = styled.div`
   width: 100%;
@@ -43,4 +50,6 @@ const ListLayout = styled.div`
 const CardLayout = styled.div`
   width: 768px;
   max-width: 90%;
+  display: flex;
+  flex-direction: column;
 `;
